@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class CSVWritter {
 
-        public void write(ArrayList<String> books, String genre) {
+        public void write(ArrayList<Book> books, String genre) {
             BufferedWriter bw = null;
             try {
                 File file = new File("output/salida.csv");
@@ -20,8 +20,8 @@ public class CSVWritter {
                 bw.write("Lista de libros del género: " + genre);
                 bw.newLine();
 
-                for (String book: books) {
-                    bw.write(book);
+                for (Book book: books) {
+                    bw.write(book.getTitle());
                     bw.newLine();
                 }
 
