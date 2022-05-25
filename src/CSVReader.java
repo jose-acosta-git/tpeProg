@@ -31,7 +31,7 @@ public class CSVReader {
                     newBook.addGenre(genre);
                 }
 
-                library.add(newBook);
+                library.addBook(newBook);
 
             }
         } catch (IOException e) {
