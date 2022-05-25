@@ -6,12 +6,12 @@ import java.util.HashSet;
 public class Main {
 
     public static void main(String[] args) {
+        Library library = new Library();
+
         CSVReader reader = new CSVReader();
         CSVWritter writer = new CSVWritter();
-        HashSet<Book> books = new HashSet<>();
-        Index index = new Index();
 
-        reader.read(books, index);
+        reader.read(library);
 
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         String genre = "";
@@ -28,8 +28,7 @@ public class Main {
             }
         } while (error);
 
-
-        writer.write(index.getByGenre(genre), genre);
+        writer.write(library.getByGenre(genre), genre);
     }
 
 }
