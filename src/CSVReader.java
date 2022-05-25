@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.HashSet;
 
 public class CSVReader {
@@ -25,8 +26,10 @@ public class CSVReader {
                 Book newBook = new Book(title, author, pages);
 
                 for (int i = 0; i < genres.length; i++) {
-                    newBook.addGenre(genres[i]);
-                    index.addBook(genres[i], newBook);
+                    String genre = Normalizer.normalize(genres[i], Normalizer.Form.NFD);
+                    genre = genre.replaceAll("[^a-z,^A-Z,^0-9]", "");
+                    newBook.addGenre(genre);
+                    index.addBook(genre, newBook);
                 }
 
                 books.add(newBook);

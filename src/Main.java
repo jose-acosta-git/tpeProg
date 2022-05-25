@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.text.Normalizer;
 import java.util.HashSet;
 
 public class Main {
@@ -18,7 +19,8 @@ public class Main {
         do {
             try {
                 System.out.println("Ingrese un género para realizar la búsqueda");
-                genre = input.readLine();
+                genre = Normalizer.normalize(input.readLine(), Normalizer.Form.NFD);
+                genre = genre.replaceAll("[^a-z,^A-Z,^0-9]", "");
                 error = false;
             } catch (Exception e) {
                 System.out.println("Ingreso inválido: " + e);
