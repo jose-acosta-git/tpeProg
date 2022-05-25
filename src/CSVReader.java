@@ -1,34 +1,36 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class CSVReader {
 
-    package ProgramacionIII.tpe;
+    public static void main(String[] args) {
+        String csvFile = "./datasets/dataset1.csv";
+        String line = "";
+        String cvsSplitBy = ",";
 
-    import java.io.BufferedReader;
-    import java.io.FileReader;
-    import java.io.IOException;
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
 
-    public class CSVReader {
+            line = br.readLine(); // skip first line
+            while ((line = br.readLine()) != null) {
 
-        public static void main(String[] args) {
-            String csvFile = "[PATH-AL-ARCHIVO]/dataset.csv";
-            String line = "";
-            String cvsSplitBy = ",";
+                String[] items = line.split(cvsSplitBy);
 
-            try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+                String title = items[0];
+                String author = items[1];
+                int pages = Integer.parseInt(items[2]);
+                String[] genres = items[3].split(" ");
 
-                while ((line = br.readLine()) != null) {
+                Book newBook = new Book(title, author, pages);
 
-                    String[] items = line.split(cvsSplitBy);
-
-                    // ---------------------------------------------
-                    // Poner el codigo para cargar los datos
-                    // ---------------------------------------------
-
+                for (int i = 0; i < genres.length; i++) {
+                    newBook.addGenre(genres[i]);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
