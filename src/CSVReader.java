@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class CSVReader {
 
-    public void read(HashSet<Book> books, Index index) {
+    public void read(Library library) {
         String csvFile = "./datasets/dataset1.csv";
         String line = "";
         String cvsSplitBy = ",";
@@ -29,10 +29,9 @@ public class CSVReader {
                     String genre = Normalizer.normalize(genres[i], Normalizer.Form.NFD);
                     genre = genre.replaceAll("[^a-z,^A-Z,^0-9]", "");
                     newBook.addGenre(genre);
-                    index.addBook(genre, newBook);
                 }
 
-                books.add(newBook);
+                library.add(newBook);
 
             }
         } catch (IOException e) {

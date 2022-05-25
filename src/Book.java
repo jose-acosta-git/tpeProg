@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Book {
@@ -39,6 +40,10 @@ public class Book {
 
     public void addGenre(String genre) {
         this.genres.add(genre);
+    }
+
+    public HashSet<String> getGenres() {
+        return (HashSet<String>) this.getGenres().clone();
     }
 
     public boolean containsGenre(String genre) {
