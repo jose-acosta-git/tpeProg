@@ -26,7 +26,7 @@ public class CSVReader {
 
                 for (int i = 0; i < genres.length; i++) {
                     newBook.addGenre(genres[i]);
-                    index.addBook(genres[i], newBook.getTitle());
+                    index.addBook(genres[i], newBook);
                 }
 
                 books.add(newBook);
