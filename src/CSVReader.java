@@ -1,10 +1,11 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 
 public class CSVReader {
 
-    public static void main(String[] args) {
+    public void read(HashSet<Book> books, Index index) {
         String csvFile = "./datasets/dataset1.csv";
         String line = "";
         String cvsSplitBy = ",";
@@ -25,7 +26,10 @@ public class CSVReader {
 
                 for (int i = 0; i < genres.length; i++) {
                     newBook.addGenre(genres[i]);
+                    index.addBook(genres[i], newBook);
                 }
+
+                books.add(newBook);
 
             }
         } catch (IOException e) {
