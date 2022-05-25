@@ -43,7 +43,7 @@ public class Book {
     }
 
     public HashSet<String> getGenres() {
-        return (HashSet<String>) this.getGenres().clone();
+        return (HashSet<String>) this.genres.clone();
     }
 
     public boolean containsGenre(String genre) {
