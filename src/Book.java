@@ -6,17 +6,11 @@ public class Book {
     private int pages;
     private HashSet<String> genres;
 
-    public Book(String title, String author, int pages, HashSet<String> genres) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.genres = genres;
-    }
-
     public Book(String title, String author, int pages) {
         this.title = title;
         this.author = author;
         this.pages = pages;
+        this.genres = new HashSet<String>();
     }
 
     public String getTitle() {
@@ -43,8 +37,8 @@ public class Book {
         this.pages = pages;
     }
 
-    public void setGenres(HashSet<String> genres) {
-        this.genres = genres;
+    public void addGenre(String genre) {
+        this.genres.add(genre);
     }
 
     public boolean containsGenre(String genre) {
