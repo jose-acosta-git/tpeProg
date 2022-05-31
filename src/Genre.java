@@ -6,6 +6,7 @@ public class Genre {
 
   public Genre(String name) {
     this.name = name;
+    this.books = new LinkedList<Book>();
   }
 
   public String getName() {
@@ -18,6 +19,14 @@ public class Genre {
 
   public LinkedList<Book> getBooks() {
     return this.books;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof String) {
+      return this.name.equals(obj);
+    }
+    return false;
   }
 
 }

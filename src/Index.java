@@ -1,30 +1,45 @@
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Index {
 
-    private HashMap<String, ArrayList<Book>> books;
+  private LinkedList<Genre> books;
 
-    public Index() {
-        books = new HashMap<String, ArrayList<Book>>();
+  public Index() {
+    books = new LinkedList<Genre>();
+  }
+
+  public void addBook(String genre, Book book) {
+    boolean found = false;
+    Iterator<Genre> it = this.books.iterator();
+
+    while (it.hasNext() && !found) {
+      Genre current = it.next();
+      if (current.getName().equals(genre)) {
+        found = true;
+        current.addBook(book);
+      }
     }
 
-    public void addBook(String genre, Book book) {
-        if (books.containsKey(genre)) {
-            books.get(genre).add(book);
-        } else {
-            ArrayList<Book> newList = new ArrayList<Book>();
-            newList.add(book);
-            books.put(genre, newList);
-        }
+    if (!found) {
+      Genre newGenre = new Genre(genre);
+      newGenre.addBook(book);
+      this.books.add(newGenre);
     }
 
-    public ArrayList<Book> getByGenre(String genre) {
-        ArrayList<Book> r = new ArrayList<Book>();
-        if (books.containsKey(genre)) {
-            r.addAll(books.get(genre));
-        }
-        return r;
+  }
+
+  public LinkedList<Book> getByGenre(String genre) {
+    Iterator<Genre> it = this.books.iterator();
+
+    while (it.hasNext()) {
+      Genre current = it.next();
+      if (current.getName().equals(genre)) {
+        return current.getBooks();
+      }
     }
+
+    return new LinkedList<Book>();
+  }
 
 }
