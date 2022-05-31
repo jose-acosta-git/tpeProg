@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 public class Library {
 
-    private HashSet<Book> books;
+    private LinkedList<Book> books;
     private Index index;
 
     public Library() {
-        books = new HashSet<>();
+        books = new LinkedList<>();
         index = new Index();
     }
 

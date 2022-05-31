@@ -1,17 +1,18 @@
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 public class Book {
     private String title;
     private String author;
     private int pages;
-    private HashSet<String> genres;
+    private LinkedList<String> genres;
 
     public Book(String title, String author, int pages) {
         this.title = title;
         this.author = author;
         this.pages = pages;
-        this.genres = new HashSet<String>();
+        this.genres = new LinkedList<>();
     }
 
     public String getTitle() {
@@ -42,8 +43,8 @@ public class Book {
         this.genres.add(genre);
     }
 
-    public HashSet<String> getGenres() {
-        return (HashSet<String>) this.genres.clone();
+    public LinkedList<String> getGenres() {
+        return (LinkedList<String>) this.getGenres().clone();
     }
 
     public boolean containsGenre(String genre) {
