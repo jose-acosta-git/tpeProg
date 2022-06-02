@@ -10,7 +10,11 @@ public class Main {
     CSVReader reader = new CSVReader();
     CSVWritter writer = new CSVWritter();
 
+    Timer timer = new Timer();
+
+    timer.start();
     reader.read(library);
+    System.out.println("Tiempo de carga: " + timer.stop());
 
     BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
     String genre = "";
@@ -27,7 +31,9 @@ public class Main {
       }
     } while (error);
 
+    timer.start();
     writer.write(library.getByGenre(genre), genre);
+    System.out.println("Tiempo de busqueda y escritura : " + timer.stop());
   }
 
 }
