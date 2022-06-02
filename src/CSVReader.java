@@ -6,7 +6,7 @@ import java.text.Normalizer;
 public class CSVReader {
 
   public void read(Library library) {
-    String csvFile = "./datasets/dataset1.csv";
+    String csvFile = "./datasets/dataset4.csv";
     String line = "";
     String cvsSplitBy = ",";
 
@@ -25,9 +25,10 @@ public class CSVReader {
         Book newBook = new Book(title, author, pages);
 
         for (int i = 0; i < genres.length; i++) {
-          String genre = Normalizer.normalize(genres[i], Normalizer.Form.NFD);
-          genre = genre.replaceAll("[^a-z,^A-Z,^0-9]", "");
-          newBook.addGenre(genre);
+          // String genre = Normalizer.normalize(genres[i], Normalizer.Form.NFD);
+          // genre = genre.replaceAll("[^a-z,^A-Z,^0-9]", "");
+          // newBook.addGenre(genre);
+          newBook.addGenre(genres[i]);
         }
 
         library.addBook(newBook);
