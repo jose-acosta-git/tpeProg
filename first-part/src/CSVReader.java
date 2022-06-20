@@ -5,8 +5,7 @@ import java.text.Normalizer;
 
 public class CSVReader {
 
-  public void read(Library library) {
-    String csvFile = "./datasets/dataset4.csv";
+  public void read(Library library, String csvFile) {
     String line = "";
     String cvsSplitBy = ",";
 

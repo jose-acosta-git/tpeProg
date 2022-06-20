@@ -10,10 +10,13 @@ public class Main {
     CSVReader reader = new CSVReader();
     CSVWritter writer = new CSVWritter();
 
+    String dataset = "./datasets/dataset4.csv";
+    File file = new File("output/salida.csv");
+
     Timer timer = new Timer();
 
     timer.start();
-    reader.read(library);
+    reader.read(library, dataset);
     System.out.println("Tiempo de carga: " + timer.stop());
 
     BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -32,7 +35,7 @@ public class Main {
     } while (error);
 
     timer.start();
-    writer.write(library.getByGenre(genre), genre);
+    writer.write(library.getByGenre(genre), genre, file);
     System.out.println("Tiempo de busqueda y escritura : " + timer.stop());
   }
 

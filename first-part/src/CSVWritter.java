@@ -6,10 +6,10 @@ import java.util.LinkedList;
 
 public class CSVWritter {
 
-  public void write(LinkedList<Book> books, String genre) {
+  public void write(LinkedList<Book> books, String genre, File file) {
     BufferedWriter bw = null;
     try {
-      File file = new File("output/salida.csv");
+
       if (!file.exists()) {
         file.createNewFile();
       }
