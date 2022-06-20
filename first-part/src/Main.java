@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.text.Normalizer;
+import java.util.LinkedList;
 
 public class Main {
 
@@ -36,8 +37,11 @@ public class Main {
     } while (error);
 
     timer.start();
-    writer.write(library.getByGenre(genre), genre, file);
-    System.out.println("Tiempo de busqueda y escritura : " + timer.stop());
+    LinkedList<Book> books = library.getByGenre(genre);
+    System.out.println("Tiempo de busqueda: " + timer.stop());
+    timer.start();
+    writer.write(books, genre, file);
+    System.out.println("Tiempo de escritura: " + timer.stop());
   }
 
 }
