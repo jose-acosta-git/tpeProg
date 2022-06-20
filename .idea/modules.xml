@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/tpeProg.iml" filepath="$PROJECT_DIR$/tpeProg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/first-part/first-part.iml" filepath="$PROJECT_DIR$/first-part/first-part.iml" />
+      <module fileurl="file://$PROJECT_DIR$/second-part/second-part.iml" filepath="$PROJECT_DIR$/second-part/second-part.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tpe proceso.iml" filepath="$PROJECT_DIR$/.idea/tpe proceso.iml" />
     </modules>
   </component>
 </project>

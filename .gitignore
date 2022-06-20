@@ -1,3 +1,7 @@
 .vscode/
 output/
 out/
+.idea
+.idea/*
+*.iml
+*.xml
