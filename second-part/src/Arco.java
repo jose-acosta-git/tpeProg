@@ -5,21 +5,21 @@
  */
 public class Arco<T> {
 
-  private int verticeOrigen;
-  private int verticeDestino;
+  private String verticeOrigen;
+  private String verticeDestino;
   private T etiqueta;
 
-  public Arco(int verticeOrigen, int verticeDestino, T etiqueta) {
+  public Arco(String verticeOrigen, String verticeDestino, T etiqueta) {
     this.verticeOrigen = verticeOrigen;
     this.verticeDestino = verticeDestino;
     this.etiqueta = etiqueta;
   }
 
-  public int getVerticeOrigen() {
+  public String getVerticeOrigen() {
     return verticeOrigen;
   }
 
-  public int getVerticeDestino() {
+  public String getVerticeDestino() {
     return verticeDestino;
   }
 
@@ -27,12 +27,16 @@ public class Arco<T> {
     return etiqueta;
   }
 
+  public void setEtiqueta(T etiqueta) {
+    this.etiqueta = etiqueta;
+  }
+
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + verticeDestino;
-    result = prime * result + verticeOrigen;
+    result = prime * result + ((verticeDestino == null) ? 0 : verticeDestino.hashCode());
+    result = prime * result + ((verticeOrigen == null) ? 0 : verticeOrigen.hashCode());
     return result;
   }
 
@@ -44,10 +48,16 @@ public class Arco<T> {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    Arco<T> other = (Arco<T>) obj;
-    if (verticeDestino != other.verticeDestino)
+    Arco other = (Arco) obj;
+    if (verticeDestino == null) {
+      if (other.verticeDestino != null)
+        return false;
+    } else if (!verticeDestino.equals(other.verticeDestino))
       return false;
-    if (verticeOrigen != other.verticeOrigen)
+    if (verticeOrigen == null) {
+      if (other.verticeOrigen != null)
+        return false;
+    } else if (!verticeOrigen.equals(other.verticeOrigen))
       return false;
     return true;
   }

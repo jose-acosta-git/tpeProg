@@ -3,25 +3,25 @@ import java.util.Iterator;
 public interface Grafo<T> {
 
   // Agrega un vertice
-  public void agregarVertice(int verticeId);
+  public void agregarVertice(String verticeId);
 
   // Borra un vertice
-  public void borrarVertice(int verticeId);
+  public void borrarVertice(String verticeId);
 
   // Agrega un arco con una etiqueta, que conecta el verticeId1 con el verticeId2
-  public void agregarArco(int verticeId1, int verticeId2, T etiqueta);
+  public void agregarArco(String verticeId1, String verticeId2, T etiqueta);
 
   // Borra el arco que conecta el verticeId1 con el verticeId2
-  public void borrarArco(int verticeId1, int verticeId2);
+  public void borrarArco(String verticeId1, String verticeId2);
 
   // Verifica si existe un vertice
-  public boolean contieneVertice(int verticeId);
+  public boolean contieneVertice(String verticeId);
 
   // Verifica si existe un arco entre dos vertices
-  public boolean existeArco(int verticeId1, int verticeId2);
+  public boolean existeArco(String verticeId1, String verticeId2);
 
   // Obtener el arco que conecta el verticeId1 con el verticeId2
-  public Arco<T> obtenerArco(int verticeId1, int verticeId2);
+  public Arco<T> obtenerArco(String verticeId1, String verticeId2);
 
   // Devuelve la cantidad total de vertices en el grafo
   public int cantidadVertices();
@@ -31,17 +31,17 @@ public interface Grafo<T> {
 
   // Obtiene un iterador que me permite recorrer todos los vertices almacenados en
   // el grafo
-  public Iterator<Integer> obtenerVertices();
+  public Iterator<String> obtenerVertices();
 
   // Obtiene un iterador que me permite recorrer todos los vertices adyacentes a
   // verticeId
-  public Iterator<Integer> obtenerAdyacentes(int verticeId);
+  public Iterator<String> obtenerAdyacentes(String verticeId);
 
   // Obtiene un iterador que me permite recorrer todos los arcos del grafo
   public Iterator<Arco<T>> obtenerArcos();
 
   // Obtiene un iterador que me permite recorrer todos los arcos que parten desde
   // verticeId
-  public Iterator<Arco<T>> obtenerArcos(int verticeId);
+  public Iterator<Arco<T>> obtenerArcos(String verticeId);
 
 }

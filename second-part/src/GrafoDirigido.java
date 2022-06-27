@@ -4,32 +4,32 @@ import java.util.LinkedList;
 
 public class GrafoDirigido<T> implements Grafo<T> {
 
-  private HashSet<Integer> vertices;
+  private HashSet<String> vertices;
   private HashSet<Arco<T>> arcos;
 
   public GrafoDirigido() {
-    this.vertices = new HashSet<Integer>();
+    this.vertices = new HashSet<String>();
     this.arcos = new HashSet<Arco<T>>();
   }
 
   // Complejidad: O(1)
   @Override
-  public void agregarVertice(int verticeId) {
+  public void agregarVertice(String verticeId) {
     this.vertices.add(verticeId);
   }
 
   // Complejidad: O(n+a) donde n es el numero de vertices y a el numero de arcos
   @Override
-  public void borrarVertice(int verticeId) {
+  public void borrarVertice(String verticeId) {
     boolean deleted = false;
-    Iterator<Integer> it = this.vertices.iterator();
+    Iterator<String> it = this.vertices.iterator();
     while (it.hasNext() && !deleted) {
-      int next = it.next();
-      if (next == verticeId) {
+      String next = it.next();
+      if (next.equals(verticeId)) {
         Iterator<Arco<T>> itArco = this.arcos.iterator();
         while (itArco.hasNext()) {
           Arco<T> arco = itArco.next();
-          if (arco.getVerticeOrigen() == verticeId || arco.getVerticeDestino() == verticeId) {
+          if (arco.getVerticeOrigen().equals(verticeId) || arco.getVerticeDestino().equals(verticeId)) {
             itArco.remove();
           }
         }
@@ -41,15 +41,15 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
   // Complejidad: O(1)
   @Override
-  public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
+  public void agregarArco(String verticeId1, String verticeId2, T etiqueta) {
     this.arcos.add(new Arco<T>(verticeId1, verticeId2, etiqueta));
   }
 
   // Complejidad: O(n) donde n es el numero de arcos
   @Override
-  public void borrarArco(int verticeId1, int verticeId2) {
+  public void borrarArco(String verticeId1, String verticeId2) {
     for (Arco<T> arco : this.arcos) {
-      if (arco.getVerticeOrigen() == verticeId1 && arco.getVerticeDestino() == verticeId2) {
+      if (arco.getVerticeOrigen().equals(verticeId1) && arco.getVerticeDestino().equals(verticeId2)) {
         this.arcos.remove(arco);
         break;
       }
@@ -58,9 +58,9 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
   // Complejidad: O(n) donde n es el numero de vertices
   @Override
-  public boolean contieneVertice(int verticeId) {
-    for (Integer vertice : this.vertices) {
-      if (vertice == verticeId)
+  public boolean contieneVertice(String verticeId) {
+    for (String vertice : this.vertices) {
+      if (vertice.equals(verticeId))
         return true;
     }
     return false;
@@ -68,15 +68,15 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
   // Complejidad: O(1) debido al hasCode y equals del hashset
   @Override
-  public boolean existeArco(int verticeId1, int verticeId2) {
+  public boolean existeArco(String verticeId1, String verticeId2) {
     return this.arcos.contains(new Arco<T>(verticeId1, verticeId2, null));
   }
 
   // Complejidad: O(n) donde n es el numero de arcos
   @Override
-  public Arco<T> obtenerArco(int verticeId1, int verticeId2) {
+  public Arco<T> obtenerArco(String verticeId1, String verticeId2) {
     for (Arco<T> arco : this.arcos) {
-      if (arco.getVerticeOrigen() == verticeId1 && arco.getVerticeDestino() == verticeId2)
+      if (arco.getVerticeOrigen().equals(verticeId1) && arco.getVerticeDestino().equals(verticeId2))
         return arco;
     }
     return null;
@@ -96,17 +96,17 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
   // Complejidad: O(1)
   @Override
-  public Iterator<Integer> obtenerVertices() {
+  public Iterator<String> obtenerVertices() {
     return this.vertices.iterator();
   }
 
   // Complejidad: O(n) donde n es el numero de arcos
   // el add dentro del if no suma porque es O(1)
   @Override
-  public Iterator<Integer> obtenerAdyacentes(int verticeId) {
-    LinkedList<Integer> resultado = new LinkedList<Integer>();
+  public Iterator<String> obtenerAdyacentes(String verticeId) {
+    LinkedList<String> resultado = new LinkedList<String>();
     for (Arco<T> arco : this.arcos) {
-      if (arco.getVerticeOrigen() == verticeId) {
+      if (arco.getVerticeOrigen().equals(verticeId)) {
         resultado.add(arco.getVerticeDestino());
       }
     }
@@ -122,10 +122,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
   // Complejidad: O(n) donde n es el numero de arcos
   // el add dentro del if no suma porque es O(1)
   @Override
-  public Iterator<Arco<T>> obtenerArcos(int verticeId) {
+  public Iterator<Arco<T>> obtenerArcos(String verticeId) {
     LinkedList<Arco<T>> resultado = new LinkedList<Arco<T>>();
     for (Arco<T> arco : this.arcos) {
-      if (arco.getVerticeOrigen() == verticeId) {
+      if (arco.getVerticeOrigen().equals(verticeId)) {
         resultado.add(arco);
       }
     }

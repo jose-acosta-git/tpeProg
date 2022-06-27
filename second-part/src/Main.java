@@ -9,7 +9,7 @@ public class Main {
     String dataset = "./datasets/dataset1.csv";
     File file = new File("output/salida.csv");
 
-    Grafo grafo = new GrafoDirigido<>();
+    Grafo<Integer> grafo = new GrafoDirigido<>();
     reader.read(grafo, dataset);
 
     System.out.println(grafo.toString());

@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class CSVReader {
 
-  public void read(Grafo grafo, String csvFile) {
+  public void read(Grafo<Integer> grafo, String csvFile) {
     String line = "";
     String cvsSplitBy = ",";
 
@@ -16,8 +16,17 @@ public class CSVReader {
         String[] genres = line.split(cvsSplitBy);
 
         for (int i = 0; i < genres.length; i++) {
-          // grafo.agregarVertice(genres[i]);
-          grafo.agregarVertice(i); // only add number of for loop for test
+          grafo.agregarVertice(genres[i]);
+          if (i > 0) { // guarantee that both vertex are created before add the arc
+            String verticeId1 = genres[i - 1];
+            String verticeId2 = genres[i];
+            if (!grafo.existeArco(verticeId1, verticeId2))
+              grafo.agregarArco(verticeId1, verticeId2, 1);
+            else {
+              Arco<Integer> a = grafo.obtenerArco(verticeId1, verticeId2);
+              a.setEtiqueta(a.getEtiqueta() + 1);
+            }
+          }
         }
 
       }
