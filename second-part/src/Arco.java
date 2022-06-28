@@ -64,7 +64,8 @@ public class Arco<T> {
 
   @Override
   public String toString() {
-    return "\n\tArco [etiqueta=" + etiqueta + ", verticeDestino=" + verticeDestino + ", verticeOrigen="
+    return "\n\tArco [etiqueta=" + etiqueta + ", verticeDestino=" +
+        verticeDestino + ", verticeOrigen="
         + verticeOrigen
         + "]";
   }

@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-
 public class Main {
   public static void main(String[] args) {
 
@@ -9,38 +5,21 @@ public class Main {
 
     String dataset = "./datasets/dataset1.csv";
 
-    Grafo<Integer> grafo = new GrafoDirigido<>();
+    GrafoDirigido<Integer> grafo = new GrafoDirigido<Integer>();
     reader.read(grafo, dataset);
 
-    System.out.println(obtenerNMasBuscadosDespuesDe(grafo, "poesía", 3));
-  }
+    // Servicio 1
+    // ObtenerNMasBuscados servicio1 = new ObtenerNMasBuscados();
+    // System.out.println(servicio1.obtenerNMasBuscadosDespuesDe(grafo, "poesía",
+    // 3));
 
-  public static ArrayList<String> obtenerNMasBuscadosDespuesDe(Grafo<Integer> grafo, String genero, int N) {
-    ArrayList<String> masBuscados = new ArrayList<String>();
-    ArrayList<Integer> valoresMasBuscados = new ArrayList<Integer>();
-    // Initialize both list with null values
-    for (int i = 0; i < N; i++) {
-      masBuscados.add(null);
-      valoresMasBuscados.add(0);
-    }
-    Iterator<Arco<Integer>> it = grafo.obtenerArcos(genero);
-    while (it.hasNext()) {
-      Arco<Integer> next = it.next();
-      int i = 0;
-      while (i < masBuscados.size()) {
-        if (masBuscados.get(i) == null) {
-          masBuscados.set(i, next.getVerticeDestino());
-          valoresMasBuscados.set(i, next.getEtiqueta());
-          i = masBuscados.size();
-        } else if (valoresMasBuscados.get(i) < next.getEtiqueta()) {
-          masBuscados.set(i, next.getVerticeDestino());
-          valoresMasBuscados.set(i, next.getEtiqueta());
-          i = masBuscados.size();
-        } else
-          i++;
-      }
-    }
-    return masBuscados;
+    // Servicio 2
+    SecuenciaAltoValor servicio2 = new SecuenciaAltoValor(grafo);
+    System.out.println(servicio2.encontrarSecuencia("poesía"));
+
+    // Servicio 3
+    // GenerosAfines servicio3 = new GenerosAfines();
+    // System.out.println(servicio3.encontrarGenerosAfines(grafo, "poesía"));
   }
 
 }

@@ -56,14 +56,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
     }
   }
 
-  // Complejidad: O(n) donde n es el numero de vertices
+  // Complejidad: O(1) debido al hasCode y equals del hashset
   @Override
   public boolean contieneVertice(String verticeId) {
-    for (String vertice : this.vertices) {
-      if (vertice.equals(verticeId))
-        return true;
-    }
-    return false;
+    return this.vertices.contains(verticeId);
   }
 
   // Complejidad: O(1) debido al hasCode y equals del hashset
