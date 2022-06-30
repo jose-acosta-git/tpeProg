@@ -131,6 +131,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
   @Override
   public String toString() {
     return "GrafoDirigido:\n" + "arcos=" + arcos + "\nvertices=" + vertices;
+    // return arcos.toString();
   }
 
 }

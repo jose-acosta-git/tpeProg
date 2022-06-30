@@ -1,33 +1,46 @@
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class ObtenerNMasBuscados {
 
-  public ArrayList<String> obtenerNMasBuscadosDespuesDe(Grafo<Integer> grafo, String genero, int N) {
-    ArrayList<String> masBuscados = new ArrayList<String>();
-    ArrayList<Integer> valoresMasBuscados = new ArrayList<Integer>();
-    // Initialize both list with null values
+  public LinkedList<String> obtenerNMasBuscadosDespuesDe(Grafo<Integer> grafo, String genero, int N) {
+    Arco<Integer> masBuscados[] = new Arco[N];
     for (int i = 0; i < N; i++) {
-      masBuscados.add(null);
-      valoresMasBuscados.add(0);
+      masBuscados[i] = null;
     }
-    Iterator<Arco<Integer>> it = grafo.obtenerArcos(genero);
+    Iterator<Arco<Integer>> it = grafo.obtenerArcos();
     while (it.hasNext()) {
       Arco<Integer> next = it.next();
-      int i = 0;
-      while (i < masBuscados.size()) {
-        if (masBuscados.get(i) == null) {
-          masBuscados.set(i, next.getVerticeDestino());
-          valoresMasBuscados.set(i, next.getEtiqueta());
-          i = masBuscados.size();
-        } else if (valoresMasBuscados.get(i) < next.getEtiqueta()) {
-          masBuscados.set(i, next.getVerticeDestino());
-          valoresMasBuscados.set(i, next.getEtiqueta());
-          i = masBuscados.size();
-        } else
-          i++;
+      if (next.getVerticeOrigen().equals(genero)) {
+        int i = 0;
+        while (i < masBuscados.length) {
+          if (masBuscados[i] == null) {
+            masBuscados[i] = next;
+            i = masBuscados.length;
+          } else if (masBuscados[i].getEtiqueta() <= next.getEtiqueta()) {
+            corrimientoDerecha(masBuscados, i);
+            masBuscados[i] = next;
+            i = masBuscados.length;
+          } else {
+            i++;
+          }
+        }
       }
     }
-    return masBuscados;
+    LinkedList<String> generosMasBuscados = new LinkedList<String>();
+    for (int i = 0; i < masBuscados.length; i++) {
+      if (masBuscados[i] != null)
+        generosMasBuscados.add(masBuscados[i].getVerticeDestino());
+    }
+    return generosMasBuscados;
   }
+
+  private void corrimientoDerecha(Arco<Integer>[] array, int i) {
+    int aux = array.length - 1;
+    while (i < aux) {
+      array[aux] = array[aux - 1];
+      aux--;
+    }
+  }
+
 }

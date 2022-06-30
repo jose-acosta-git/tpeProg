@@ -12,54 +12,37 @@ public class SecuenciaAltoValor {
     this.mejorSecuencia = new ArrayList<String>();
   }
 
-  // Implementar si o si con greedy para tiempo polinomial
   public ArrayList<String> encontrarSecuencia(String genero) {
     this.mejorSecuencia.add(genero);
 
-    Iterator<String> itCandidatos = this.grafo.obtenerAdyacentes(genero);
+    Iterator<Arco<Integer>> itCandidatos = this.grafo.obtenerArcos(genero);
 
     while (itCandidatos.hasNext()) {
-      // Selecciona como estrategia greedy el adyacente que tenga
-      // mayor cantidad de adyacentes
+      // Selecciona el adyacente con mayor valor en la etiqueta
       String gen = seleccionar(itCandidatos);
       if (gen != null) {
         this.mejorSecuencia.add(gen);
-        itCandidatos = this.grafo.obtenerAdyacentes(gen);
-      } else {
-        // Clean the iterator for end the while loop
-        while (itCandidatos.hasNext())
-          itCandidatos.next();
       }
+      itCandidatos = this.grafo.obtenerArcos(gen);
     }
 
     return this.mejorSecuencia;
   }
 
-  public String seleccionar(Iterator<String> itCandidatos) {
-    String gen = null;
-    int cantAdyacentes = -1;
+  public String seleccionar(Iterator<Arco<Integer>> itArcos) {
+    Arco<Integer> mejorArco = null;
 
-    while (itCandidatos.hasNext()) {
-      String genero = itCandidatos.next();
-      if (!this.mejorSecuencia.contains(genero)) {
-        int cant = cantidadElementosIterator(this.grafo.obtenerAdyacentes(genero));
-        if (cant > cantAdyacentes) {
-          cantAdyacentes = cant;
-          gen = genero;
-        }
+    while (itArcos.hasNext()) {
+      Arco<Integer> arco = itArcos.next();
+      if (!this.mejorSecuencia.contains(arco.getVerticeDestino())) {
+        if (mejorArco == null || arco.getEtiqueta() > mejorArco.getEtiqueta())
+          mejorArco = arco;
       }
     }
-
-    return gen;
-  }
-
-  public int cantidadElementosIterator(Iterator<String> it) {
-    int cant = 0;
-    while (it.hasNext()) {
-      String next = it.next();
-      cant++;
-    }
-    return cant;
+    if (mejorArco != null)
+      return mejorArco.getVerticeDestino();
+    else
+      return null;
   }
 
 }

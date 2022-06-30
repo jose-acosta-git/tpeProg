@@ -11,7 +11,7 @@ public class Main {
     CSVReader reader = new CSVReader();
     CSVWritter writer = new CSVWritter();
 
-    String dataset = "./datasets/dataset4.csv";
+    String dataset = "./datasets/dataset1.csv";
     File file = new File("output/salida.csv");
 
     Timer timer = new Timer();
@@ -26,9 +26,11 @@ public class Main {
     do {
       try {
         System.out.print("Ingrese un género para realizar la búsqueda: ");
-        /* normalizacion
-        genre = Normalizer.normalize(input.readLine(), Normalizer.Form.NFD);
-        genre = genre.replaceAll("[^a-z,^A-Z,^0-9]", "");*/
+        /*
+         * normalizacion
+         * genre = Normalizer.normalize(input.readLine(), Normalizer.Form.NFD);
+         * genre = genre.replaceAll("[^a-z,^A-Z,^0-9]", "");
+         */
         genre = input.readLine();
         error = false;
       } catch (Exception e) {
